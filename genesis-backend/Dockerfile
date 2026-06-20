@@ -16,7 +16,7 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels \
 FROM python:3.11-slim-bookworm
 
 # Create a non-root user for security (Shift-Left Security)
-RUN addgroup --system eseria && adduser --system --group eseria
+RUN addgroup --system eseria && adduser --system --home /home/eseria --group eseria
 
 WORKDIR /app
 
