@@ -1,0 +1,17 @@
+# render.yaml - ESERIA Genesis Blueprint
+services:
+  - type: web
+    name: eseria-logic-fortress
+    env: docker
+    region: frankfurt # Choose region closest to Supabase (eu-central or us-east)
+    plan: starter # Optimize for cost during genesis
+    healthCheckPath: /api/v1/health/
+    envVars:
+      - key: DATABASE_URL
+        sync: false # Set this manually in Render dashboard using Supabase Pooler URL
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: ".onrender.com,johnjaylawal.org,tech.johnjaylawal.org,edu.johnjaylawal.org,lead.johnjaylawal.org"

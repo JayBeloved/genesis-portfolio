@@ -1,0 +1,38 @@
+name: Zenith Pipeline - Logic Fortress
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  security-and-lint:
+    name: Shift-Left Security & Linting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Linting Tools
+        run: pip install flake8 bandit
+
+      - name: Enforce Code Quality (Flake8)
+        run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Security Scan (Bandit)
+        run: bandit -r . -lll # Scans Python code for hardcoded passwords and vulnerabilities
+
+  deploy-to-render:
+    name: Zero-Touch Deployment
+    needs: security-and-lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deploy Hook
+        # This only runs if the security-and-lint job passes perfectly.
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}

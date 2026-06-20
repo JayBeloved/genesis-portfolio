@@ -1,0 +1,4 @@
+-r base.txt
+gunicorn==25.3.0
+psycopg[binary]>=3.1.8  # The modern, async-ready PostgreSQL driver
+sentry-sdk==2.57.0
