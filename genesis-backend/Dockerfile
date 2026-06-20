@@ -35,4 +35,4 @@ RUN chown -R eseria:eseria /app
 USER eseria
 
 # Gunicorn setup for robust concurrent handling
-CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "3", "--threads", "2", "config.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:10000", "--workers", "3", "--threads", "2", "eseria_core.wsgi:application"]
