@@ -30,6 +30,9 @@ RUN pip install --no-cache /wheels/*
 
 COPY . .
 
+# Collect static files for WhiteNoise
+RUN SECRET_KEY="dummy" DATABASE_URL="sqlite:////tmp/db.sqlite3" python manage.py collectstatic --noinput
+
 # Transfer ownership to non-root user
 RUN chown -R eseria:eseria /app
 USER eseria

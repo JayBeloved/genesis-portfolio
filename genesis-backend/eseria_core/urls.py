@@ -1,4 +1,3 @@
-import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import (
@@ -8,7 +7,6 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('__debug__/', include(debug_toolbar.urls)),
     
     # The ESERIA Identity Gateways
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
