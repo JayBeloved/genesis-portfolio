@@ -6,7 +6,7 @@ from sentry_sdk.integrations.django import DjangoIntegration
 DEBUG = False
 
 # Strict CORS: Only allow traffic from your specific domains
-CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='https://johnjaylawal.org', cast=Csv())
+CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', default='https://johnjaylawal.org,https://www.johnjaylawal.org,http://localhost:3000', cast=Csv())
 
 # PostgreSQL connection via URL (Standard for AWS/DigitalOcean/Render)
 DATABASES = {
