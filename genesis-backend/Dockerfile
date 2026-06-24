@@ -15,6 +15,8 @@ RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels \
 # Stage 2: Final runtime image (The Sidonian Edge: Zero Waste)
 FROM python:3.11-slim-bookworm
 
+ENV DJANGO_SETTINGS_MODULE="eseria_core.settings.production"
+
 # Create a non-root user for security (Shift-Left Security)
 RUN addgroup --system eseria && adduser --system --home /home/eseria --group eseria
 
