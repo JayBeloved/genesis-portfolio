@@ -78,10 +78,11 @@ export default function SovereignTerminal() {
   return (
     <>
       <button 
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-8 right-8 z-40 bg-sovereign text-black font-mono text-[10px] uppercase tracking-widest px-4 py-2 hover:bg-white transition-colors shadow-sovereign flex items-center gap-2"
+        onClick={() => setIsOpen(prev => !prev)}
+        className="fixed bottom-6 right-6 z-40 bg-obsidian/80 backdrop-blur-md border border-blueprint-dark text-gray-400 font-mono text-[10px] uppercase tracking-widest px-4 py-3 rounded-sm hover:text-sovereign hover:border-sovereign/50 transition-all shadow-[0_0_10px_rgba(26,43,60,0.3)] flex items-center gap-2"
       >
-        <span className="w-2 h-2 bg-black animate-pulse"></span> Terminal [⌘K]
+        <span className={`w-2 h-2 ${isOpen ? 'bg-red-500' : 'bg-sovereign animate-pulse'}`}></span> 
+        {isOpen ? 'Close Terminal' : 'Terminal [⌘K]'}
       </button>
 
       {isOpen && (
